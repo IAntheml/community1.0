@@ -22,11 +22,12 @@ public class MailClient {
     @Autowired
     private JavaMailSender mailSender;
     //直接从配置文件中获取邮件的发送者是谁
-    @Value("spring.mail.username")
+    @Value("${spring.mail.username}")
     private String from;
 
     public  void sendMail(String to,String subject,String content){
         try {
+            //MimeMessage：邮件的模板
             MimeMessage message = mailSender.createMimeMessage();
             //通过MimeMessageHelper将详细内容放入createMimeMessage创建的模板对象中。
             MimeMessageHelper helper = new MimeMessageHelper(message);
